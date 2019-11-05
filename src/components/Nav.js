@@ -1,35 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const links = ["system", "application", "window", "layouts", "notifications"];
+
 const Nav = () => {
     return (
         <nav>
             <ul>
-                <li>
-                    <Link id="system-link" to={"/system"}>
-                        System
-                    </Link>
-                </li>
-                <li>
-                    <Link id="application-link" to={"/application"}>
-                        Application
-                    </Link>
-                </li>
-                <li>
-                    <Link id="window-link" to={"/window"}>
-                        Window
-                    </Link>
-                </li>
-                <li>
-                    <Link id="layouts-link" to={"/layouts"}>
-                        Layouts
-                    </Link>
-                </li>
-                <li>
-                    <Link id="notifications-link" to={"/notifications"}>
-                        Notifications
-                    </Link>
-                </li>
+                {links.map(link => (
+                    <li key={links.indexOf(link)}>
+                        <Link id={`${link}-link`} to={`/${link}`}>
+                            {link[0].toUpperCase() + link.slice(1)}
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </nav>
     );

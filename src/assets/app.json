@@ -1,0 +1,32 @@
+{
+  "startup_app": {
+    "name": "testing-app",
+    "url": "http://localhost:8080",
+    "uuid": "testing-app",
+    "applicationIcon": "http://localhost:8080/assets/favicon.ico",
+    "autoShow": true,
+    "saveWindowState": false,
+    "permissions": {
+      "ExternalWindow": {
+        "wrap": true
+      },
+      "System": {
+        "getAllExternalWindows": true,
+        "launchExternalProcess": true,
+        "readRegistryValue": false,
+        "terminateExternalProcess": true
+      }
+    }
+  },
+  "runtime": {
+    "arguments": "--enable-experimental-web-platform-features --remote-debugging-port=9222",
+    "version": "14.78.45.31"
+  },
+  "shortcut": {
+    "company": "OpenFin",
+    "description": "Automated Testing App",
+    "icon": "http://localhost:8080/favicon.ico",
+    "name": "Testing App",
+    "target": ["desktop"]
+  }
+}

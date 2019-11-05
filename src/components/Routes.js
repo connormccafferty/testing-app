@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import SystemTests from "./SystemTests";
-import ApplicationTests from "./ApplicationTests";
-import WindowTests from "./WindowTests";
+import SystemTests from "../containers/SystemTests";
+import ApplicationTests from "../containers/ApplicationTests";
+import WindowTests from "../containers/WindowTests";
 
 const Routes = ({ fin }) => {
     return (
