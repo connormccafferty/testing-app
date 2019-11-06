@@ -2,7 +2,7 @@ export default [
   {
     title: ".getVersion",
     description: "Get the OpenFin runtime version.",
-    buttonId: "get-version",
+    id: "get-version",
     clickHandler: (fin, setExecuted, setSuccess, setError, setMessage) => {
       setExecuted(true);
       fin.System.getVersion()

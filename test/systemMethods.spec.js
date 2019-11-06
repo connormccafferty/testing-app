@@ -1,20 +1,27 @@
+const esmImport = require("esm")(module);
+const systemMethods = esmImport("../src/tests/systemMethods").default;
+const mapPageElements = require("../helpers/pageElements");
+
+const pageElements = mapPageElements(systemMethods);
+
 describe("System Methods", () => {
-    it(".getVersion should return the runtime version declared in the manifest", async () => {
-        let manifestVersion = "14.78.45.31";
-        let page = await getWindowByTitle("Testing App");
+  it(".getVersion should return the runtime version declared in the manifest", async () => {
+    let page = await getWindowByTitle("Testing App");
 
-        const [response] = await Promise.all([
-            page.click("#system-link"),
-            page.waitFor(1000)
-        ]);
+    const [response] = await Promise.all([
+      page.click("#system-link"),
+      page.waitFor(1000)
+    ]);
 
-        await page.click("#get-version");
+    let manifestVersion = "14.78.45.31";
 
-        let ofVersion = await page.$eval(
-            "#get-version-message",
-            el => el.textContent
-        );
+    await page.click(pageElements[".getVersion"].button);
 
-        assert.equal(ofVersion, manifestVersion);
-    });
+    let ofVersion = await page.$eval(
+      pageElements[".getVersion"].message,
+      el => el.textContent
+    );
+
+    assert.equal(ofVersion, manifestVersion);
+  });
 });

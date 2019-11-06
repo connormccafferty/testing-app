@@ -2,7 +2,7 @@ export default [
   {
     title: ".identity",
     description: "Get the current window's identity",
-    buttonId: "get-identity",
+    id: "get-identity",
     clickHandler: (fin, setExecuted, setSuccess, setError, setMessage) => {
       setExecuted(true);
       fin.Window.getCurrent()

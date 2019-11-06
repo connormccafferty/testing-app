@@ -2,7 +2,7 @@ export default [
   {
     title: ".getShortcuts",
     description: "Get application's shortcut configuration.",
-    buttonId: "get-shortcuts",
+    id: "get-shortcuts",
     clickHandler: (fin, setExecuted, setSuccess, setError, setMessage) => {
       setExecuted(true);
       fin.Application.getCurrentSync()

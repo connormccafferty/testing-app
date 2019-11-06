@@ -1,25 +1,29 @@
-describe("Window Methods", () => {
-    it(".identity should match the name and uuid declared in the manifest", async () => {
-        let page = await getWindowByTitle("Testing App");
+const esmImport = require("esm")(module);
+const windowMethods = esmImport("../src/tests/windowMethods").default;
+const mapPageElements = require("../helpers/pageElements");
 
-        const [response] = await Promise.all([
-            page.click("#window-link"),
-            page.waitFor(1000)
-        ]);
+const pageElements = mapPageElements(windowMethods);
 
-        const [response1] = await Promise.all([
-            page.click("#get-identity"),
-            page.waitFor(1000)
-        ]);
+describe("Window Methods", async () => {
+  it(".identity should match the name and uuid declared in the manifest", async () => {
+    let page = await getWindowByTitle("Testing App");
 
-        let windowIdentity = await page.$eval(
-            "#get-identity-message",
-            el => el.textContent
-        );
+    const [response] = await Promise.all([
+      page.click("#window-link"),
+      page.waitFor(1000)
+    ]);
 
-        // windowIdentity = JSON.parse(windowIdentity);
+    const [response1] = await Promise.all([
+      page.click(pageElements[".identity"].button),
+      page.waitFor(1000)
+    ]);
 
-        assert.equal(JSON.parse(windowIdentity).name, "testing-app");
-        assert.equal(JSON.parse(windowIdentity).uuid, "testing-app");
-    });
+    let windowIdentity = await page.$eval(
+      pageElements[".identity"].message,
+      el => el.textContent
+    );
+
+    assert.equal(JSON.parse(windowIdentity).name, "testing-app");
+    assert.equal(JSON.parse(windowIdentity).uuid, "testing-app");
+  });
 });
