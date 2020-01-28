@@ -2,14 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import InBrowser from "./InBrowser";
-import App from "./App";
+import AppRouter from "./AppRouter";
 
-const checkEnv = ({ fin }) => {
-  if (!fin) {
-    return <InBrowser />;
-  }
-  return <App fin={fin} />;
-};
+const checkEnv = ({ fin }) => (fin ? <AppRouter fin={fin} /> : <InBrowser />);
 
 ReactDOM.render(checkEnv(window), document.getElementById("app"));
 

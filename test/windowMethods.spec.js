@@ -26,4 +26,30 @@ describe("Window Methods", async () => {
     assert.equal(JSON.parse(windowIdentity).name, "testing-app");
     assert.equal(JSON.parse(windowIdentity).uuid, "testing-app");
   });
+
+  it(".create should create a child window", async () => {
+    let page = await getWindowByTitle("Testing App");
+
+    const [response] = await Promise.all([
+      page.click("#window-link"),
+      page.waitFor(1000)
+    ]);
+
+    const [response1] = await Promise.all([
+      page.click(pageElements[".createWindow"].button),
+      page.waitFor(1000)
+    ]);
+
+    let childPage = await getWindowByTitle("Child Window");
+
+    const wHandle = await page.evaluateHandle(() => window);
+    const childWindows = await page.evaluate(
+      window =>
+        Promise.resolve(
+          window.fin.Application.getCurrentSync().getChildWindows()
+        ),
+      wHandle
+    );
+    console.log(childWindows);
+  });
 });
