@@ -1,52 +1,32 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
 
-const Test = ({
-  fin,
-  title,
-  description,
-  id,
-  clickHandler,
-  route,
-  component
-}) => {
+const Test = ({ fin, title, description, id, clickHandler }) => {
   const [executed, setExecuted] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState(null);
 
   return (
-    <>
-      <li>
+    <li>
+      <div>
         <div>
-          <div>
-            <strong>{title}</strong>
-            <div>{description}</div>
-            {executed ? <span>Executed</span> : null}
-            {success ? <span>Success</span> : null}
-            {error ? <span>Error</span> : null}
-            {message ? <span id={`${id}-message`}>{message}</span> : null}
-          </div>
-          <button
-            id={`${id}-btn`}
-            onClick={() =>
-              clickHandler({
-                fin: fin,
-                setExecuted: setExecuted,
-                setSuccess: setSuccess,
-                setError: setError,
-                setMessage: setMessage
-              })
-            }
-          >
-            run
-          </button>
+          <strong>{title}</strong>
+          <div>{description}</div>
+          {executed ? <span>Executed</span> : null}
+          {success ? <span>Success</span> : null}
+          {error ? <span>Error</span> : null}
+          {message ? <span id={`${id}-message`}>{message}</span> : null}
         </div>
-      </li>
-      {route && component ? (
-        <Route exact path={route} component={component} />
-      ) : null}
-    </>
+        <button
+          id={`${id}-btn`}
+          onClick={() =>
+            clickHandler(fin, setExecuted, setSuccess, setError, setMessage)
+          }
+        >
+          run
+        </button>
+      </div>
+    </li>
   );
 };
 

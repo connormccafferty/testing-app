@@ -3,7 +3,7 @@ export default [
     title: ".getVersion",
     description: "Get the OpenFin runtime version.",
     id: "get-version",
-    clickHandler: ({ fin, setExecuted, setSuccess, setError, setMessage }) => {
+    clickHandler: (fin, setExecuted, setSuccess, setError, setMessage) => {
       setExecuted(true);
       fin.System.getVersion()
         .then(version => {
@@ -13,8 +13,6 @@ export default [
         .catch(error => {
           setError(true);
         });
-    },
-    route: null,
-    component: null
+    }
   }
 ];

@@ -3,7 +3,7 @@ export default [
     title: ".getShortcuts",
     description: "Get application's shortcut configuration.",
     id: "get-shortcuts",
-    clickHandler: ({ fin, setExecuted, setSuccess, setError, setMessage }) => {
+    clickHandler: (fin, setExecuted, setSuccess, setError, setMessage) => {
       setExecuted(true);
       fin.Application.getCurrentSync()
         .getShortcuts()
@@ -14,8 +14,6 @@ export default [
         .catch(error => {
           setError(true);
         });
-    },
-    route: null,
-    component: null
+    }
   }
 ];
